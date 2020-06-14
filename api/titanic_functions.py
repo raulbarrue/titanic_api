@@ -21,7 +21,8 @@ def replace_titles(x):
 def clean_df(df, verbose=False):
 
     if not isinstance(df, pd.DataFrame):
-        df = pd.DataFrame(df, columns = ["pclass", "name", "sex", "age", "sibsp", "parch", "fare", "cabin", "embarked"])
+        df = pd.DataFrame(df, 
+                          columns = ["pclass", "name", "sex", "age", "sibsp", "parch", "fare", "cabin", "embarked"])
     df.columns = df.columns.str.lower()
 
     # Drop "boat", "body", "home.dest" and "ticket". The first two hold information if the passenger survived (boat) or if it didn't and the body was recovered (body).
