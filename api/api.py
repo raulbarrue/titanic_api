@@ -11,13 +11,13 @@ app = Flask(__name__)
 CORS(app)
 api = Api(app)# Require a parser to parse our POST request.
 parser = reqparse.RequestParser()
-parser.add_argument("pclass", type="int64")
+parser.add_argument("pclass")
 parser.add_argument("name")
 parser.add_argument("sex")
-parser.add_argument("age", type="int64")
-parser.add_argument("sibsp", type="int64")
-parser.add_argument("parch", type="int64")
-parser.add_argument("fare", type="int64")
+parser.add_argument("age")
+parser.add_argument("sibsp")
+parser.add_argument("parch")
+parser.add_argument("fare")
 parser.add_argument("cabin")
 parser.add_argument("embarked")
 
@@ -26,6 +26,7 @@ pipeline = load('./pipeline_model/titanic_pipeline.joblib')
 
 class Predict(Resource):
     def post(self):
+
         args = parser.parse_args()
         # Sklearn is VERY PICKY on how you put your values in...
         X = ([[
@@ -38,12 +39,12 @@ class Predict(Resource):
             args["fare"],
             args["cabin"],
             args["embarked"]
-            ]])    
+            ]])
         X = tfunc.clean_df(X).values
 
-
         _y = pipeline.predict(X)[0]
-        return {"class": _y}
+
+        return {"class": str(_y)}
 
 api.add_resource(Predict, "/predict")
 
