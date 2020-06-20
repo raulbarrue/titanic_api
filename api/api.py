@@ -23,6 +23,7 @@ parser.add_argument("embarked")
 
 # Unpickle our model so we can use it!
 pipeline = load('./pipeline_model/titanic_pipeline.joblib')
+sc = load("./pipeline_model/scaler.joblib")
 
 class Predict(Resource):
     def post(self):
@@ -41,6 +42,7 @@ class Predict(Resource):
             args["embarked"]
             ]])
         X = tfunc.clean_df(X).values
+        X = sc.transform(X)
 
         _y = pipeline.predict(X)[0]
 
