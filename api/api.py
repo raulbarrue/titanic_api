@@ -4,12 +4,17 @@ from flask import Flask
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 import numpy as np
+import sys
+#sys.path.append('/DS Projects/titanic_api/lib/')
 
 import titanic_functions as tfunc
 
+
 app = Flask(__name__)
 CORS(app)
-api = Api(app)# Require a parser to parse our POST request.
+api = Api(app)
+
+# Require a parser to parse our POST request.
 parser = reqparse.RequestParser()
 parser.add_argument("pclass")
 parser.add_argument("name")
@@ -27,9 +32,7 @@ sc = load("./pipeline_model/scaler.joblib")
 
 class Predict(Resource):
     def post(self):
-
         args = parser.parse_args()
-        # Sklearn is VERY PICKY on how you put your values in...
         X = ([[
             args["pclass"],
             args["name"],
@@ -44,9 +47,18 @@ class Predict(Resource):
         X = tfunc.clean_df(X).values
         X = sc.transform(X)
 
-        _y = pipeline.predict(X)[0]
+        y = pipeline.predict(X)[0]
+        
+        #return {"class": str(y)}
 
-        return {"class": str(_y)}
+        if y == 0:
+            msg = "DIE :("
+        elif y == 1:
+            msg = "SURVIVE :)"
+        else:
+            msg = "Something went wrong"
+            
+        return {"class": str(msg)}
 
 api.add_resource(Predict, "/predict")
 

@@ -57,7 +57,7 @@
         </form>
         <br/>
         <br/>
-        <h1 v-if="predictedClass">Predicted Class is: {{ predictedClass }}</h1>
+        <h1 v-if="predictedClass">YOU {{ predictedClass }}</h1>
         <!-- END: IMPORTANT PART! -->
       </v-flex>
     </v-layout>
