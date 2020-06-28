@@ -17,7 +17,7 @@ The reasons to use the Titanic dataset are three:
 
  
 
-I have followed this tutorial for the Dash webapp: [Link](https://towardsdatascience.com/how-to-create-an-interactive-dash-web-application-11ea210aa6d9)
+I followed this tutorial for the Dash webapp: [Link](https://towardsdatascience.com/how-to-create-an-interactive-dash-web-application-11ea210aa6d9)
 
 ---
 
