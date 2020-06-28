@@ -1,7 +1,0 @@
-1. To run the API:
-    - cd D:\DS Projects\titanic_api\api
-    - python api.py
-
-2. To run the web server:
-    - cd D:\DS Projects\titanic_api\api\www\titanic_api
-    - npm run serve
