@@ -122,7 +122,7 @@ pyupgrade==1.26.2
 #pywin32==227
 #pywin32-ctypes==0.2.0
 #pywinpty==0.5.7
-PyYAML==5.3.1
+PyYAML==5.4
 pyzmq==18.1.1
 readme-renderer==26.0
 regex==2020.6.8
